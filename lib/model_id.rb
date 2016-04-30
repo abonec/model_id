@@ -1,5 +1,5 @@
-require "model_id/version"
+require 'model_id/version'
+require 'model_id/base'
 
 module ModelId
-  # Your code goes here...
 end
