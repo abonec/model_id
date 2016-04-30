@@ -1,6 +1,6 @@
 # ModelId
 
-TODO: Write a gem description
+Gem add feature for id and find by this id across all instances of the model.
 
 ## Installation
 
@@ -18,7 +18,20 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Include ModelId::Base to model's class:
+
+    class User
+        include ModelId::Base
+    end
+
+Now your model has #model_id:
+
+    User.new.model_id
+
+And you cand find instances by id:
+
+    user = User.new
+    User.find_by_id(user.model_id)
 
 ## Contributing
 
