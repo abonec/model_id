@@ -33,6 +33,17 @@ And you cand find instances by id:
     user = User.new
     User.find_by_id(user.model_id)
 
+## Notes
+
+Since ruby < 2.0 don't have prepend method you should manually call #set_next_model_id in your constructor:
+
+    class User
+        include ModelId::Base
+        def initialize
+            set_next_model_id
+        end
+    end
+
 ## Contributing
 
 1. Fork it ( https://github.com/abonec/model_id/fork )
