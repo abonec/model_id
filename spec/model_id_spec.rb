@@ -37,4 +37,11 @@ describe ModelId::Base do
     end.to change(@class_with_id, :last_model_id).by(2)
     expect(@second_instance.model_id).to be_eql(@first_instance.model_id.next)
   end
+
+  it 'should find model instance by id' do
+    first_instance = @class_with_id.new
+    second_instance = @class_with_id.new
+    expect(@class_with_id.find_by_id(first_instance.model_id)).to eql(first_instance)
+    expect(@class_with_id.find_by_id(second_instance.model_id)).to eql(second_instance)
+  end
 end
