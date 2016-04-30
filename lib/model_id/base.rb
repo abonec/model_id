@@ -10,15 +10,13 @@ module ModelId
     end
 
     def self.included(base)
-      if base.respond_to? :prepend
-        base.prepend Ruby2Initializer
-        base.class_eval do
-          class << self
-            attr_accessor :last_model_id
-          end
+      base.class_eval do
+        class << self
+          attr_accessor :last_model_id
         end
-        base.last_model_id = 0
       end
+      base.last_model_id = 0
+      base.prepend Ruby2Initializer if base.respond_to? :prepend
     end
 
     module Ruby2Initializer
