@@ -13,6 +13,10 @@ module ModelId
       self.class.model_id_instances[@model_id] = self
     end
 
+    def delete_model
+      self.class.model_id_instances.delete @model_id
+    end
+
     def self.included(base)
       base.class_eval do
         class << self

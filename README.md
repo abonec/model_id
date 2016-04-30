@@ -28,10 +28,17 @@ Now your model has #model_id:
 
     User.new.model_id
 
-And you cand find instances by id:
+And you can find instances by id:
 
     user = User.new
-    User.find_by_id(user.model_id)
+    User.find_by_id(user.model_id) # => user
+
+After you don't need this instance anymore you can delete it from the index by #delete_model:
+
+    user = User.new
+    User.find_by_id(user.model_id) # => user
+    user.delete_model
+    User.find_by_id(user.model_id) # => nil
 
 ## Notes
 

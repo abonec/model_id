@@ -44,4 +44,11 @@ describe ModelId::Base do
     expect(@class_with_id.find_by_id(first_instance.model_id)).to eql(first_instance)
     expect(@class_with_id.find_by_id(second_instance.model_id)).to eql(second_instance)
   end
+
+  it 'should delete model from index' do
+    instance = @class_with_id.new
+    expect(@class_with_id.find_by_id(instance.model_id)).to eql(instance)
+    instance.delete_model
+    expect(@class_with_id.find_by_id(instance.model_id)).to be_nil
+  end
 end
