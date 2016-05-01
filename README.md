@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/abonec/model_id.svg?branch=master)](https://travis-ci.org/abonec/model_id)
+
 # ModelId
 
 Gem add feature for id and find by this id across all instances of the model.
