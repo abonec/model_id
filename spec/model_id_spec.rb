@@ -13,9 +13,13 @@ describe ModelId::Base do
     class_with_custom_initialializer = Class.new do
       include ModelId::Base
       def initialize(arg1, arg2);
+        set_next_model_id unless self.class.respond_to? :prepend
       end
     end
-    expect{class_with_custom_initialializer.new(1,2)}.not_to raise_error
+    expect do
+      instance = class_with_custom_initialializer.new(1,2)
+      expect(instance.model_id).not_to be_nil
+    end.not_to raise_error
   end
   it 'should support models with default initializer' do
     class_without_initializer = Class.new do
@@ -27,9 +31,13 @@ describe ModelId::Base do
     class_with_noargs_initializer = Class.new do
       include ModelId::Base
       def initialize
+        set_next_model_id unless self.class.respond_to? :prepend
       end
     end
-    expect{class_with_noargs_initializer.new}.not_to raise_error
+    expect do
+      instance = class_with_noargs_initializer.new
+      expect(instance.model_id).not_to be_nil
+    end.not_to raise_error
   end
 
   it 'instance should have an id' do
