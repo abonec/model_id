@@ -27,7 +27,11 @@ module ModelId
       base.last_model_id = 0
       base.model_id_mutex = Mutex.new
       base.model_id_instances = {}
-      base.prepend Ruby2Initializer if base.respond_to? :prepend
+      if base.respond_to? :prepend
+        base.prepend StandardInitializer
+      else
+        base.send :include, StandardInitializer
+      end
     end
 
     module ClassMethods
@@ -35,7 +39,7 @@ module ModelId
         model_id_instances[id]
       end
     end
-    module Ruby2Initializer
+    module StandardInitializer
       def initialize(*args)
         set_next_model_id
         super(*args)

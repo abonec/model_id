@@ -12,7 +12,8 @@ describe ModelId::Base do
   it 'should support models with initializer with arguments' do
     class_with_custom_initialializer = Class.new do
       include ModelId::Base
-      def initialize(arg1, arg2); end
+      def initialize(arg1, arg2);
+      end
     end
     expect{class_with_custom_initialializer.new(1,2)}.not_to raise_error
   end
@@ -25,7 +26,8 @@ describe ModelId::Base do
   it 'should support models with noargs initializer' do
     class_with_noargs_initializer = Class.new do
       include ModelId::Base
-      def initialize; end
+      def initialize
+      end
     end
     expect{class_with_noargs_initializer.new}.not_to raise_error
   end
